@@ -30,4 +30,11 @@ public class Projeto {
     @ManyToMany(mappedBy = "projetos")
     private List<Funcionario> funcionarios =  new ArrayList<>();
 
+    public Projeto(String nome) {
+        this.nome = nome;
+    }
+
+
+
+    
 }

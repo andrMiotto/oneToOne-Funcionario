@@ -28,7 +28,9 @@ public class Assento {
     @OneToOne(mappedBy = "assento")
     private Funcionario funcionario;
 
-
+    public Assento(String codigo) {
+        this.codigo = codigo;
+    }
 
     
 }

@@ -8,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +23,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Funcionario {
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +33,12 @@ public class Funcionario {
     @OneToOne(cascade = CascadeType.ALL)
     private Assento assento;
 
-    @ManyToOne
+    @ManyToMany
+    @JoinTable(name = "funcionario_projeto", joinColumns = @JoinColumn(name = "funcionario_id"), inverseJoinColumns = @JoinColumn(name = "projeto_id"))
     private List<Projeto> projetos = new ArrayList<>();
+
+    public Funcionario(String nome) {
+        this.nome = nome;
+    }
+
 }
